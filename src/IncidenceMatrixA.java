@@ -17,7 +17,23 @@ public class IncidenceMatrixA {
         docLists = new ArrayList<int[]>();
 
         for (int i = 0; i<myDocs.length; i++) {
-            
+            String[] words = myDocs[i].split(" ");
+            for(String word: words) {
+                if(!termList.contains(word)) {
+                    termList.add(word);
+                    int[] docList = new int[myDocs.length];
+                    docList[i] = 1;
+                    docLists.add(docList);
+                }
+                else {
+                    int index = termList.indexOf(word);
+                    int [] docList = docLists.remove(index);
+                    docList[i] = 1;
+                    docLists.add(index, docList);
+
+                }
+            }
+
         }
 
     }
