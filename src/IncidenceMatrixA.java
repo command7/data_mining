@@ -6,30 +6,30 @@ import java.util.*;
 
 public class IncidenceMatrixA {
     //attributes
-    private String[] myDocs;               //input docs
-    private ArrayList<String> termList;    //dictionary
-    private ArrayList<int[]> docLists;
+    private String[] documents;               //input docs
+    private ArrayList<String> terms;    //dictionary
+    private ArrayList<int[]> mineInfos;
 
     //Constructor
-    public IncidenceMatrixA(String[] docs) {
-        myDocs = docs;
-        termList = new ArrayList<String>();
-        docLists = new ArrayList<int[]>();
+    public IncidenceMatrixA(String[] _documents) {
+        documents = _documents;
+        terms = new ArrayList<String>();
+        mineInfos = new ArrayList<int[]>();
 
-        for (int i = 0; i<myDocs.length; i++) {
-            String[] words = myDocs[i].split(" ");
+        for (int doc = 0; doc<documents.length; doc++) {
+            String[] words = documents[doc].split(" ");
             for(String word: words) {
-                if(!termList.contains(word)) {
-                    termList.add(word);
-                    int[] docList = new int[myDocs.length];
-                    docList[i] = 1;
-                    docLists.add(docList);
+                if(!terms.contains(word)) {
+                    terms.add(word);
+                    int[] mineInfo = new int[documents.length];
+                    mineInfo[doc] = 1;
+                    mineInfos.add(mineInfo);
                 }
                 else {
-                    int index = termList.indexOf(word);
-                    int [] docList = docLists.remove(index);
-                    docList[i] = 1;
-                    docLists.add(index, docList);
+                    int termIndex = terms.indexOf(word);
+                    int [] mineInfo = mineInfos.remove(termIndex);
+                    mineInfo[doc] = 1;
+                    mineInfos.add(termIndex, mineInfo);
 
                 }
             }
@@ -44,11 +44,11 @@ public class IncidenceMatrixA {
 
     public String toString() {
         String outputString = new String();
-        for(int i=0;i<termList.size();i++) {
-            outputString += String.format("%-15s", termList.get(i));
-            int[] docList = docLists.get(i);
-            for(int j=0;j<docList.length;j++) {
-                outputString += docList[j] + "\t";
+        for(int termIndex=0;termIndex<terms.size();termIndex++) {
+            outputString += String.format("%-15s", terms.get(termIndex));
+            int[] mineInfo = mineInfos.get(termIndex);
+            for(int mineInfoIndex=0; mineInfoIndex<mineInfo.length; mineInfoIndex++) {
+                outputString += mineInfo[mineInfoIndex] + "\t";
             }
             outputString += "\n";
         }
