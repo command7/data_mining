@@ -61,5 +61,7 @@ public class IncidenceMatrixA {
                 "dimensional data warehousing over big data",
                 "nlp before text mining",
                 "nlp before text classification"};
+        IncidenceMatrixA test = new IncidenceMatrixA(docs);
+        System.out.println(test);
     }
 }
