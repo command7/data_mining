@@ -38,17 +38,22 @@ public class IncidenceMatrixA {
 
     }
 
-    public void search(String query) {
+    public ArrayList<String> search(String query) {
+        ArrayList resultDocs = new ArrayList<String>();
         for(String term: terms) {
             if(query.equals(term)) {
                 int termIndex = terms.indexOf(term);
                 int [] termMineInfo = mineInfos.get(termIndex);
-                for (int boolInfo: termMineInfo) {
-                    System.out.println(boolInfo);
+                for (int docIndex = 0; docIndex < termMineInfo.length; docIndex++) {
+                  if(termMineInfo[docIndex] == 1) {
+                     resultDocs.add(documents[docIndex]);
+                    
+                    }
                 }
 
             }
         }
+        return resultDocs;
 
     }
 
@@ -73,6 +78,7 @@ public class IncidenceMatrixA {
                 "nlp before text classification"};
         IncidenceMatrixA test = new IncidenceMatrixA(docs);
         System.out.println(test);
-        test.search("data");
+        ArrayList ex = test.search("data");
+        System.out.println(ex);
     }
 }
