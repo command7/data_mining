@@ -78,7 +78,9 @@ public class IncidenceMatrixA {
                 "nlp before text classification"};
         IncidenceMatrixA test = new IncidenceMatrixA(docs);
         System.out.println(test);
-        ArrayList ex = test.search("data");
-        System.out.println(ex);
+        if(args.length >0) {
+            ArrayList dataDocuments = test.search(args[0]);
+            System.out.println(dataDocuments);
+        }
     }
 }
