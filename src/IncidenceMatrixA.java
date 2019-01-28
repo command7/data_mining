@@ -21,16 +21,18 @@ public class IncidenceMatrixA {
             for(String word: words) {
                 if(!terms.contains(word)) {
                     terms.add(word);
-                    int[] mineInfo = new int[documents.length];
-                    mineInfo[doc] = 1;
+                    ArrayList<Integer> mineInfo = new ArrayList<Integer>();
+                    mineInfo.add(new Integer(doc));
                     mineInfos.add(mineInfo);
                 }
                 else {
                     int termIndex = terms.indexOf(word);
-                    int [] mineInfo = mineInfos.remove(termIndex);
-                    mineInfo[doc] = 1;
-                    mineInfos.add(termIndex, mineInfo);
-
+                    ArrayList<Integer> mineInfo = mineInfos.get(termIndex);
+                    mineInfo.add(termIndex);
+                    if(!mineInfo.contains(new Integer(termIndex))) {
+                        mineInfo.add(new Integer(termIndex));
+                        mineInfos.set(termIndex, mineInfo);
+                    }
                 }
             }
 
