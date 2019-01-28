@@ -8,13 +8,15 @@ public class IncidenceMatrixA {
     //attributes
     private String[] documents;               //input docs
     private ArrayList<String> terms;    //dictionary
-    private ArrayList<int[]> mineInfos;
+    private ArrayList<ArrayList<Integer>> mineInfos;
+    private ArrayList<Integer> mineIndivInfo;
 
     //Constructor
     public IncidenceMatrixA(String[] _documents) {
         documents = _documents;
         terms = new ArrayList<String>();
-        mineInfos = new ArrayList<int[]>();
+        mineInfos = new ArrayList<ArrayList<Integer>>();
+        mineIndivInfo = new ArrayList<Integer>();
 
         for (int doc = 0; doc<documents.length; doc++) {
             String[] words = documents[doc].split(" ");
