@@ -29,8 +29,8 @@ public class IncidenceMatrixA {
                     int termIndex = terms.indexOf(word);
                     ArrayList<Integer> mineInfo = mineInfos.get(termIndex);
 //                    mineInfo.add(termIndex);
-                    if(!mineInfo.contains(new Integer(termIndex))) {
-                        mineInfo.add(new Integer(termIndex));
+                    if(!mineInfo.contains(new Integer(doc))) {
+                        mineInfo.add(new Integer(doc));
                         mineInfos.set(termIndex, mineInfo);
                     }
                 }
