@@ -40,32 +40,30 @@ public class IncidenceMatrixA {
 
     }
 
-    public ArrayList<String> search(String query) {
-        ArrayList resultDocs = new ArrayList<String>();
-        for(String term: terms) {
-            if(query.equals(term)) {
-                int termIndex = terms.indexOf(term);
-                int [] termMineInfo = mineInfos.get(termIndex);
-                for (int docIndex = 0; docIndex < termMineInfo.length; docIndex++) {
-                  if(termMineInfo[docIndex] == 1) {
-                     resultDocs.add(documents[docIndex]);
-                    
-                    }
-                }
-
-            }
-        }
-        return resultDocs;
-
-    }
+//    public ArrayList<String> search(String query) {
+//        ArrayList resultDocs = new ArrayList<String>();
+//        for(String term: terms) {
+//            if(query.equals(term)) {
+//                int termIndex = terms.indexOf(term);
+//                int [] termMineInfo = mineInfos.get(termIndex);
+//                for (int docIndex = 0; docIndex < termMineInfo.length; docIndex++) {
+//                  if(termMineInfo[docIndex] == 1) {
+//                     resultDocs.add(documents[docIndex]);
+//
+//                    }
+//                }
+//            }
+//        }
+//        return resultDocs;
+//    }
 
     public String toString() {
         String outputString = new String();
         for(int termIndex=0;termIndex<terms.size();termIndex++) {
             outputString += String.format("%-15s", terms.get(termIndex));
-            int[] mineInfo = mineInfos.get(termIndex);
-            for(int mineInfoIndex=0; mineInfoIndex<mineInfo.length; mineInfoIndex++) {
-                outputString += mineInfo[mineInfoIndex] + "\t";
+            ArrayList<Integer> mineInfo = mineInfos.get(termIndex);
+            for(int mineInfoIndex=0; mineInfoIndex<mineInfo.size(); mineInfoIndex++) {
+                outputString += mineInfo.get(mineInfoIndex) + "\t";
             }
             outputString += "\n";
         }
@@ -80,9 +78,9 @@ public class IncidenceMatrixA {
                 "nlp before text classification"};
         IncidenceMatrixA test = new IncidenceMatrixA(docs);
         System.out.println(test);
-        if(args.length >0) {
-            ArrayList dataDocuments = test.search(args[0]);
-            System.out.println(dataDocuments);
-        }
+//        if(args.length >0) {
+//            ArrayList dataDocuments = test.search(args[0]);
+//            System.out.println(dataDocuments);
+//        }
     }
 }
