@@ -40,7 +40,7 @@ public class IncidenceMatrixA {
 
     }
 
-//    public ArrayList<String> search(String query) {
+    public ArrayList<Integer> search(String query) {
 //        ArrayList resultDocs = new ArrayList<String>();
 //        for(String term: terms) {
 //            if(query.equals(term)) {
@@ -54,8 +54,15 @@ public class IncidenceMatrixA {
 //                }
 //            }
 //        }
+        int termIndex = terms.indexOf(query);
+        if (termIndex >= 0) {
+            return mineInfos.get(termIndex);
+        }
+        else {
+            return null;
+        }
 //        return resultDocs;
-//    }
+    }
 
     public String toString() {
         String outputString = new String();
