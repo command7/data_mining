@@ -44,6 +44,33 @@ public class ParserA {
 
     //Tokenization
     public ArrayList<String> parse(File fileName) throws IOException {
+        String tokens [] = null; //original tokens
+        ArrayList<String> dirtyTokens = new ArrayList<String>(); //stop words removed tokens
+        ArrayList<String> stemmedTokens = new ArrayList<String>(); //stemmed tokens
+        Scanner scan = new Scanner(fileName);
+        String stringifiedDocument = new String();
+
+        // Case folding  - all text to lowercase
+        while (scan.hasNextLine()) {
+            allLines += scan.nextLine().toLowerCase();
+        }
+
+        tokens = allLines.split("[ '.,?!:;$%+()\\-\\*]");
+
+        //remove stop words
+        for (String token: tokens) {
+            if (searchStopWord(token) == -1) {
+                dirtyTokens.add(token);
+            }
+        }
+
+        //stem words
+        Stemmer stemmer = new Stemmer();
+        for (String dirtyToken: dirtyTokens) {
+            stemmer.add(dirtyToken.toCharArray(), dirtyToken.length());
+            stemmer.stem();
+            stemmedTokens.add(stemmer.toString());
+        }
 
         return null;
     }
