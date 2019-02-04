@@ -13,11 +13,11 @@ public class ParserA {
 
     public ParserA() {
         Arrays.sort(stopWords);
-        String sortedStopWords = new String();
-        for (String stopWord: stopWords) {
-            sortedStopWords += stopWord + " ";
-        }
-        System.out.println(sortedStopWords);
+//        String sortedStopWords = new String();
+//        for (String stopWord: stopWords) {
+//            sortedStopWords += stopWord + " ";
+//        }
+//        System.out.println(sortedStopWords);
     }
 
     //Binary search for a stop word
@@ -52,10 +52,10 @@ public class ParserA {
 
         // Case folding  - all text to lowercase
         while (scan.hasNextLine()) {
-            allLines += scan.nextLine().toLowerCase();
+            stringifiedDocument += scan.nextLine().toLowerCase();
         }
 
-        tokens = allLines.split("[ '.,?!:;$%+()\\-\\*]");
+        tokens = stringifiedDocument.split("[ '.,?!:;$%+()\\-\\*]+");
 
         //remove stop words
         for (String token: tokens) {
@@ -65,11 +65,13 @@ public class ParserA {
         }
 
         //stem words
+        Stemmer stemmer = new Stemmer();
         for (String dirtyToken: dirtyTokens) {
-            Stemmer stemmer = new Stemmer();
+
             stemmer.add(dirtyToken.toCharArray(), dirtyToken.length());
             stemmer.stem();
             stemmedTokens.add(stemmer.toString());
+            stemmer = new Stemmer();
         }
 
         return stemmedTokens;
@@ -77,12 +79,22 @@ public class ParserA {
 
     public static void main(String[] args) {
         ParserA test = new ParserA();
-        System.out.println("Stop word index: " + test.searchStopWord("are"));
-
-        Stemmer stemTest = new Stemmer();
-        String stemTestWord = "replacement";
-        stemTest.add(stemTestWord.toCharArray(), stemTestWord.length());
-        stemTest.stem();
-        System.out.println("Stemmed word: " + stemTest.toString());
+        try {
+            File document = new File("StemTest.txt");
+            ArrayList<String> pureTokens = test.parse(document);
+            for(String token: pureTokens) {
+                System.out.println(token);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+//        System.out.println("Stop word index: " + test.searchStopWord("are"));
+//
+//        Stemmer stemTest = new Stemmer();
+//        String stemTestWord = "replacement";
+//        stemTest.add(stemTestWord.toCharArray(), stemTestWord.length());
+//        stemTest.stem();
+//        System.out.println("Stemmed word: " + stemTest.toString());
     }
 }
