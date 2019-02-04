@@ -51,5 +51,11 @@ public class ParserA {
     public static void main(String[] args) {
         ParserA test = new ParserA();
         System.out.println("Stop word index: " + test.searchStopWord("are"));
+
+        Stemmer stemTest = new Stemmer();
+        String stemTestWord = "replacement";
+        stemTest.add(stemTestWord.toCharArray(), stemTestWord.length());
+        stemTest.stem();
+        System.out.println("Stemmed word: " + stemTest.toString());
     }
 }
