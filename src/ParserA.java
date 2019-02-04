@@ -13,6 +13,11 @@ public class ParserA {
 
     public ParserA() {
         Arrays.sort(stopWords);
+        String sortedStopWords = new String();
+        for (String stopWord: stopWords) {
+            sortedStopWords += stopWord + " ";
+        }
+        System.out.println(sortedStopWords);
     }
 
     //Binary search for a stop word
@@ -45,6 +50,6 @@ public class ParserA {
 
     public static void main(String[] args) {
         ParserA test = new ParserA();
-        System.out.println("Stop word: " + test.searchStopWord("are"));
+        System.out.println("Stop word index: " + test.searchStopWord("are"));
     }
 }
