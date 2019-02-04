@@ -65,14 +65,14 @@ public class ParserA {
         }
 
         //stem words
-        Stemmer stemmer = new Stemmer();
         for (String dirtyToken: dirtyTokens) {
+            Stemmer stemmer = new Stemmer();
             stemmer.add(dirtyToken.toCharArray(), dirtyToken.length());
             stemmer.stem();
             stemmedTokens.add(stemmer.toString());
         }
 
-        return null;
+        return stemmedTokens;
     }
 
     public static void main(String[] args) {
