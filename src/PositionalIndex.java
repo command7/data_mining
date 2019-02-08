@@ -13,6 +13,20 @@ public class PositionalIndex {
    //constructor
    public PositionalIndex(String[] docs) {
       myDocs = docs;
+      termList = new ArrayList<String>();
+      docLists = new ArrayList<ArrayList<Doc>>();
+      ArrayList<Doc> docList;
+
+      for (int i=0; i<myDocs.length; i++) {
+         String[] words = myDocs[i].split(" ");
+         for(int j = 0; j < words.length; j++) {
+            boolean match = false;
+            String word = words[j];
+            if(!termList.contains(word)) {
+               termList.add(word);
+            }
+         }
+      }
    }
    
    //Two-term phrase query
