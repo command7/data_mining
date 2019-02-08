@@ -59,7 +59,7 @@ class Doc {
    }
    
    public void insertPosition(int position) {
-
+      positionList.add(new Integer(position));
    }
    
    public String toString() {
