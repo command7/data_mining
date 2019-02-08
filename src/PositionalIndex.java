@@ -12,7 +12,7 @@ public class PositionalIndex {
    
    //constructor
    public PositionalIndex(String[] docs) {
-      
+      myDocs = docs;
    }
    
    //Two-term phrase query
