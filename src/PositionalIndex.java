@@ -53,11 +53,13 @@ class Doc {
    ArrayList<Integer> positionList;
    
    public Doc(int did, int position) {
-      
+      docId = did;
+      positionList = new ArrayList<Integer>();
+      positionList.add(position);
    }
    
    public void insertPosition(int position) {
-      
+
    }
    
    public String toString() {
